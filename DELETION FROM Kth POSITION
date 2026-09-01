@@ -1,0 +1,35 @@
+void deleteKth(int k)
+{
+    if (head == -1) {
+        printf("List is empty\n");
+        return;
+    }
+
+    if (k == 1) {
+        int temp = head;
+        head = list[head].next;
+        list[temp].next = -1;
+        return;
+    }
+
+    int current = head;
+
+    for (int i = 1; i < k - 1; i++) {
+        if (current == -1) {
+            printf("Invalid position\n");
+            return;
+        }
+        current = list[current].next;
+    }
+
+    if (current == -1 || list[current].next == -1) {
+        printf("Invalid position\n");
+        return;
+    }
+
+    int temp = list[current].next;
+
+    list[current].next = list[temp].next;
+
+    list[temp].next = -1;
+}
