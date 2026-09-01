@@ -1,0 +1,44 @@
+void insertKth(int value, int k)
+{
+    if (freeIndex == MAX)
+    {
+        printf("List is full\n");
+        return;
+    }
+
+    if (k == 1)
+    {
+        data[freeIndex] = value;
+        next[freeIndex] = head;
+        head = freeIndex;
+        freeIndex++;
+        return;
+    }
+
+    int temp = head;
+
+    for (int i = 1; i < k - 1; i++)
+    {
+        if (temp == -1)
+        {
+            printf("Invalid position\n");
+            return;
+        }
+
+        temp = next[temp];
+    }
+
+    if (temp == -1)
+    {
+        printf("Invalid position\n");
+        return;
+    }
+
+    data[freeIndex] = value;
+
+    next[freeIndex] = next[temp];
+
+    next[temp] = freeIndex;
+
+    freeIndex++;
+}
