@@ -1,0 +1,30 @@
+void insertEnd(int value)
+{
+    if (freeIndex == MAX)
+    {
+        printf("List is full\n");
+        return;
+    }
+
+    data[freeIndex] = value;
+    next[freeIndex] = -1;
+
+    if (head == -1)
+    {
+        head = freeIndex;
+        freeIndex++;
+        return;
+    }
+
+    int temp = head;
+
+    while (next[temp] != -1)
+    {
+        temp = next[temp];
+    }
+
+    
+    next[temp] = freeIndex;
+
+    freeIndex++;
+}
